@@ -1,0 +1,147 @@
+# ============================================
+# Python
+# ============================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ============================================
+# Virtual Environment
+# ============================================
+
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ============================================
+# Environment Variables & Secrets (CRITICAL)
+# ============================================
+
+.env
+.env.local
+.env.*.local
+.streamlit/secrets.toml
+secrets.toml
+*.pem
+*.key
+*.crt
+
+# ============================================
+# IDE / Editor
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# ============================================
+# Project-Specific
+# ============================================
+
+# Subscriber data (contains emails)
+subscribers.csv
+sent_news.json
+
+# Cached data
+*.cache
+*.log
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ============================================
+# OS / System
+# ============================================
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.nfs*
+.swp
+
+# ============================================
+# Deployment
+# ============================================
+
+# Streamlit
+.streamlit/secrets.toml
+
+# ============================================
+# Testing & Reports
+# ============================================
+
+*.log
+*.pid
+*.seed
+*.pid.lock
