@@ -5,6 +5,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 *$py.class
 *.so
 .Python
@@ -145,3 +146,9 @@ Desktop.ini
 *.pid
 *.seed
 *.pid.lock
+
+# Ignore Python virtual environment
+backend/venv/
+
+# Ignore environment variables
+backend/.env
