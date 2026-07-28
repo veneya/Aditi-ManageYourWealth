@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADITI — Scheme Matchmaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">✦</span> ADITI</div>
+    <div class="nav-links">
+      <a href="javascript:void(0)" onclick="goTo('quiz')">Home</a>
+      <a href="javascript:void(0)" onclick="goTo('quiz')">Learn</a>
+      <a href="javascript:void(0)" onclick="goTo('schemes')">Schemes</a>
+      <a href="javascript:void(0)" onclick="goTo('quiz')">Calculator</a>
+    </div>
+    <a href="javascript:void(0)" class="nav-cta" onclick="goTo('quiz')">Match my schemes</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow-pill">🇮🇳 Made for women across India</div>
+      <p class="greeting">Hi Aditi 👋</p>
+      <h1 class="headline">Find government schemes that <span class="accent">match you</span></h1>
+      <p class="hero-sub">Answer a few questions and discover benefits made for you — housing subsidies, business loans, and savings schemes, matched to your exact profile.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="goTo('quiz')">Take the eligibility quiz</button>
+        <a href="javascript:void(0)" class="btn-link" onclick="goTo('quiz')">See sample schemes →</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><b>12+</b> government schemes tracked</div>
+        <div class="trust-item"><b>2 min</b> to check eligibility</div>
+        <div class="trust-item"><b>100%</b> private and encrypted</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 320 340" width="100%">
+        <defs>
+          <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#C9B8F5"/>
+            <stop offset="100%" stop-color="#5CD6C6"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="160" cy="290" rx="120" ry="20" fill="#7C4DFF" opacity="0.10"/>
+        <circle cx="160" cy="150" r="150" fill="url(#glow)" opacity="0.16"/>
+        <path d="M100 190 Q100 130 160 130 Q220 130 220 190 L220 250 Q220 280 160 280 Q100 280 100 250 Z" fill="#6739C9"/>
+        <circle cx="160" cy="85" r="46" fill="#F3C9A0"/>
+        <path d="M116 70 Q122 30 160 30 Q198 30 204 70 Q204 50 160 47 Q116 50 116 70Z" fill="#2B2440"/>
+        <rect x="55" y="205" width="58" height="44" rx="6" fill="#FFFFFF" stroke="#0E9C8F" stroke-width="3" transform="rotate(-9 55 205)"/>
+        <rect x="205" y="205" width="58" height="44" rx="6" fill="#FFFFFF" stroke="#7C4DFF" stroke-width="3" transform="rotate(9 205 205)"/>
+        <line x1="68" y1="222" x2="100" y2="222" stroke="#0E9C8F" stroke-width="2" opacity="0.5" transform="rotate(-9 55 205)"/>
+        <line x1="68" y1="232" x2="95" y2="232" stroke="#0E9C8F" stroke-width="2" opacity="0.5" transform="rotate(-9 55 205)"/>
+        <circle cx="252" cy="110" r="12" fill="#22B8AA"/>
+        <circle cx="72" cy="140" r="9" fill="#9B7BF0"/>
+        <circle cx="270" cy="230" r="7" fill="#C9B8F5"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="section-tag center">Eligibility quiz</div>
+    <h2 class="section-title center">10 quick questions, a lifetime of benefits</h2>
+    <p class="section-sub center">Nothing here is stored or shared beyond matching you to schemes you already qualify for.</p>
+
+    <div class="quiz-shell">
+      <div class="quiz-side">
+        <div class="quiz-side-top">
+          <div class="section-tag">Why we ask</div>
+          <h3>Built for real Indian eligibility rules</h3>
+          <p>Each question maps directly to conditions used by PMAY, Mudra, Stand-Up India, Sukanya Samriddhi Yojana and more — so your match is grounded in the actual scheme guidelines, not guesswork.</p>
+        </div>
+        <div class="step-list" id="stepList"></div>
+      </div>
+
+      <div class="quiz-main">
+        <div class="quiz-top">
+          <span class="quiz-count" id="qCount">Question 1 of 10</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
+
+        <p class="q-title" id="qTitle"></p>
+        <div class="options" id="qOptions"></div>
+
+        <div class="quiz-nav">
+          <button class="btn-ghost-nav" id="backBtn" disabled>Back</button>
+          <button class="btn-next-nav" id="nextBtn" disabled>Next</button>
+        </div>
+
+        <div class="cta-wrap">
+          <button class="cta-btn" id="ctaBtn" disabled>
+            <span class="spinner" id="ctaSpinner"></span>
+            <span id="ctaLabel">Complete the quiz to continue</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results-section-wrap">
+  <div class="wrap">
+    <div id="results-section">
+      <div class="section-tag">Your top match</div>
+      <div class="hero-result">
+        <div>
+          <span class="hero-tag">🎉 Eligible scheme found</span>
+          <p class="hero-scheme-name">Pradhan Mantri Awas Yojana (PMAY)</p>
+          <div class="benefit-row"><span class="check">✔</span> Up to 6.5% interest subsidy</div>
+          <div class="benefit-row"><span class="check">✔</span> Save up to ₹2.67 lakhs</div>
+          <a class="view-benefits-btn" href="https://pmaymis.gov.in/" target="_blank" rel="noopener">View benefits</a>
+        </div>
+      </div>
+
+      <div class="section-tag" id="schemes">Ranked for your profile</div>
+      <div class="cards-grid" id="rankedCards"></div>
+
+      <div class="privacy-note">
+        🔒 <span><b>Your privacy matters.</b> Answers are used only to match eligible schemes and are never sold or shared with third parties. Data is encrypted in transit and stored as per RBI and DPDP Act 2023 guidelines. You can delete your data anytime from account settings.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="chat-head-title"><span class="chat-head-dot"></span> Ask ADITI</div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-log" id="chatLog">
+    <div class="chat-msg bot">Hi, I'm ADITI 👋 Ask me about eligibility, required documents, or how to apply for PMAY, Mudra Loan, Stand-Up India, or Sukanya Samriddhi Yojana.</div>
+  </div>
+  <div class="chat-suggestions">
+    <span class="chip" data-q="What documents do I need for PMAY?">PMAY documents</span>
+    <span class="chip" data-q="How do I apply for Mudra Loan?">Apply for Mudra</span>
+    <span class="chip" data-q="Am I eligible for Sukanya Samriddhi Yojana?">SSY eligibility</span>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Type your question..." />
+    <button class="chat-send" id="chatSend" aria-label="Send message">➤</button>
+  </div>
+</div>
+<div class="ask-aditi" id="askAditiBtn"><span class="ask-dot"></span> Ask ADITI</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 ADITI Scheme Matchmaker. Not affiliated with the Government of India.</div>
+    <div>Always verify eligibility and documents on the official scheme portal before applying.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
