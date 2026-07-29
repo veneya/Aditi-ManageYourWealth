@@ -239,79 +239,10 @@ SCHEMES = [
             "Apply directly through the official portal."
         ],
         "source": "Various state government websites"
-    },
-    {
-        "id": "vishwakarma",
-        "name": "PM Vishwakarma Yojana",
-        "category": "Business",
-        "badge": "🛠️",
-        "description": "Support for traditional artisans and craftspeople across 18 family-based trades.",
-        "benefit": "₹15,000 toolkit grant, ₹500/day training stipend, collateral-free loans up to ₹3 lakh at 5% interest.",
-        "eligibility": {
-            "age_min": 18,
-            "wants_business": True
-        },
-        "problem_solved": "Traditional artisans and craftsmen — carpenters, blacksmiths, tailors, potters and others working with their hands — often lack capital and modern tools. PM Vishwakarma gives them recognition, training and affordable credit to grow.",
-        "jargon": [
-            {"term": "Collateral-free loan", "meaning": "A loan you can get without pledging any property or asset as security."},
-            {"term": "Toolkit incentive", "meaning": "A one-time grant to help you buy modern tools for your trade."}
-        ],
-        "how_to_apply": [
-            "Register at your nearest Common Service Centre (CSC).",
-            "Complete skill verification for your trade.",
-            "Receive your PM Vishwakarma certificate and ID card, then apply for training and loans."
-        ],
-        "source": "Ministry of Micro, Small and Medium Enterprises, Government of India"
-    },
-    {
-        "id": "pmjay",
-        "name": "Ayushman Bharat PM-JAY",
-        "category": "Health",
-        "badge": "🏥",
-        "description": "Free, cashless health insurance for hospitalisation, covering the whole family.",
-        "benefit": "₹5,00,000 cashless hospital coverage per family, per year, at empanelled hospitals.",
-        "eligibility": {
-            "age_min": 18,
-            "income_max": 300000
-        },
-        "problem_solved": "A single hospitalisation can wipe out years of savings. PM-JAY removes that risk with free, cashless treatment at government and private hospitals nationwide.",
-        "jargon": [
-            {"term": "Cashless treatment", "meaning": "You don't pay the hospital directly — the government settles the bill with them."},
-            {"term": "Empanelled hospital", "meaning": "A hospital officially registered to provide treatment under this scheme."}
-        ],
-        "how_to_apply": [
-            "Check eligibility on the PM-JAY portal or Ayushman App using Aadhaar.",
-            "Visit your nearest Common Service Centre or empanelled hospital's Ayushman kiosk.",
-            "Complete e-KYC to get your Ayushman Card, then use it for cashless treatment."
-        ],
-        "source": "National Health Authority, Government of India"
-    },
-    {
-        "id": "smile",
-        "name": "SMILE Scheme (Garima Greh)",
-        "category": "Welfare",
-        "badge": "🏳️‍⚧️",
-        "description": "Comprehensive rehabilitation, shelter, health, education and livelihood support for transgender persons.",
-        "benefit": "Free shelter at Garima Greh homes, ₹5 lakh health cover for gender-affirming care under Ayushman Bharat TG Plus, scholarships, and skill training via PM-DAKSH.",
-        "eligibility": {
-            "age_min": 18,
-            "for_transgender": True
-        },
-        "problem_solved": "Transgender persons often face family rejection, homelessness, and barriers to healthcare, education and jobs. SMILE brings shelter, medical care, schooling support and livelihood training together in one scheme.",
-        "jargon": [
-            {"term": "Garima Greh", "meaning": "A government-funded shelter home offering food, medical care and safety to transgender persons."},
-            {"term": "Transgender Certificate", "meaning": "An official ID issued by the district magistrate confirming your transgender status — needed to access this scheme."}
-        ],
-        "how_to_apply": [
-            "Obtain your Transgender Certificate and ID Card from the district magistrate's office (or via the National Portal for Transgender Persons).",
-            "Locate your nearest Garima Greh or Implementing Agency through the SMILE portal.",
-            "Register for the specific support you need — shelter, health cover, scholarship, or skill training."
-        ],
-        "source": "Ministry of Social Justice and Empowerment, Government of India"
     }
 ]
 
 SCHEMES_SOURCES = {
     "url": "https://www.myscheme.gov.in",
-    "verified": "2026-07-27"
+    "verified": "2026-07-26"
 }

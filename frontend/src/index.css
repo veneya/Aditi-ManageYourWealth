@@ -1,13 +1,23 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+
+  .btn-marigold {
+    @apply inline-flex items-center justify-center rounded-full bg-marigold text-ink font-medium transition-all hover:bg-marigold/80 active:scale-[0.98];
+  }
+
+  .btn-plum {
+    @apply inline-flex items-center justify-center rounded-full bg-plum text-cream font-medium transition-all hover:bg-plum/80 active:scale-[0.98];
+  }
+
+  .card-warm {
+    @apply rounded-2xl bg-white/70 backdrop-blur-sm border border-plum/5 shadow-sm;
+  }
 }

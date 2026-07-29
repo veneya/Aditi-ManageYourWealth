@@ -1,8 +1,9 @@
-# groq_client.py
+# backend/groq_client.py
 # Thin wrapper around the Groq SDK (the "SchemeMatchmaker" app on Groq).
 # Every caller should catch exceptions and fall back to a non-AI response —
 # this keeps the API usable even if GROQ_API_KEY is missing or Groq is down.
 
+import os
 from groq import Groq
 from config import GROQ_API_KEY, GROQ_MODEL
 

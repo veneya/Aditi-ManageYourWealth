@@ -1,11 +1,13 @@
-# chatbot.py
+# backend/chatbot.py
 # "Ask ADITI" replies. Tries the Groq API first (grounded in the scheme
 # catalogue); falls back to the original keyword-based logic if Groq is
 # unavailable (no API key, rate limit, network error, etc).
 
 import json
+import sys
+sys.path.append('..')
 
-from data.schemes import SCHEMES
+from backend.data.schemes import SCHEMES
 from groq_client import chat_completion
 
 _SCHEMES_JSON = json.dumps(

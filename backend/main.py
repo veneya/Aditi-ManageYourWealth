@@ -1,103 +1,62 @@
 # backend/main.py
+# Entry point for the ADITI Scheme Matchmaker API.
+# Run locally with: uvicorn main:app --reload
 
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Optional, List
 import os
+import json
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+import sys
+
+# Add parent directory to path to import utils
+sys.path.append('..')
 
 # Load environment variables
 load_dotenv()
 
-# Import your existing utilities
-import sys
-sys.path.append('..')  # Add parent directory to path
-from utils.scheme_matcher import match_schemes
-from utils.groq_helper import explain_jargon_with_groq, generate_match_summary
-from utils.rss_fetcher import fetch_rss_news
+# Import routes
+from routes import router
+from backend.data.schemes import SCHEMES
 
-app = FastAPI(title="ADITI API", description="Financial Empowerment Platform")
+app = FastAPI(
+    title="ADITI Scheme Matchmaker API",
+    description="Matches quiz answers to eligible government welfare schemes.",
+    version="1.0.0",
+)
 
-# Enable CORS for React frontend
+# CORS - allow all origins for hackathon (no cookie-based auth, so
+# credentials aren't needed and a plain wildcard is safe + simplest)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ============================================
-# REQUEST/RESPONSE MODELS
-# ============================================
+# Include all routes
+app.include_router(router)
 
-class UserProfile(BaseModel):
-    age: int
-    marital_status: str
-    income: float
-    has_house: bool
-    wants_business: bool
-    has_daughter: bool
-    is_woman: bool = True
-
-class JargonRequest(BaseModel):
-    term: str
-
-# ============================================
-# ENDPOINTS
-# ============================================
 
 @app.get("/")
 def root():
-    return {"message": "🌺 ADITI API is running"}
-
-@app.post("/api/match")
-def match_user_schemes(profile: UserProfile):
-    """Match user profile to eligible schemes"""
-    try:
-        matched = match_schemes(profile.dict())
-        
-        # Generate AI summary
-        summary = generate_match_summary(profile.dict(), matched)
-        
-        return {
-            "success": True,
-            "matched_schemes": matched,
-            "count": len(matched),
-            "summary": summary
+    return {
+        "status": "ok",
+        "service": "ADITI Scheme Matchmaker API",
+        "schemes_count": len(SCHEMES),
+        "endpoints": {
+            "/api/match": "POST - Match user to schemes",
+            "/api/chat": "POST - Ask ADITI chatbot",
+            "/api/explain": "POST - Explain scheme jargon",
+            "/api/schemes": "GET - List all schemes",
+            "/api/schemes/{id}": "GET - Get scheme by ID",
+            "/api/news": "GET - Latest financial news"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+    }
 
-@app.post("/api/explain")
-def explain_term(request: JargonRequest):
-    """Explain a financial term using Groq AI"""
-    try:
-        explanation = explain_jargon_with_groq(request.term)
-        return {"success": True, "term": request.term, "explanation": explanation}
-    except Exception as e:
-        return {"success": False, "error": str(e)}
 
-@app.get("/api/news")
-def get_news():
-    """Fetch latest news from PIB RSS"""
-    try:
-        news = fetch_rss_news()
-        return {"success": True, "news": news}
-    except Exception as e:
-        return {"success": False, "error": str(e)}
-
-@app.get("/api/schemes")
-def get_all_schemes():
-    """Get all schemes (for admin/debug)"""
-    from data.schemes import SCHEMES
-    return {"schemes": SCHEMES}
-
-# ============================================
-# RUN
-# ============================================
-
+# Run with: uvicorn main:app --reload --host 0.0.0.0 --port 8000
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

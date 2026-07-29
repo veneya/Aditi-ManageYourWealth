@@ -1,7 +1,10 @@
-# explain.py
+# backend/explain.py
 # Plain-language explanations of scheme jargon/benefits via Groq, falling
 # back to the canned `jargon` list (or description) in schemes.py if Groq
 # is unavailable.
+
+import sys
+sys.path.append('..')
 
 from groq_client import chat_completion
 

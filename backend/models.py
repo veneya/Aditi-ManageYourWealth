@@ -1,4 +1,4 @@
-# models.py
+# backend/models.py
 # Pydantic request/response models for the ADITI Scheme Matchmaker API
 
 from pydantic import BaseModel, Field
@@ -8,9 +8,7 @@ from typing import List, Optional
 class QuizAnswers(BaseModel):
     """
     Mirrors the answers collected by the quiz in script.js.
-    All fields are the exact option strings shown to the user, so the
-    frontend can POST its `answers` array almost as-is (see matching.py
-    for how each field gets normalized).
+    All fields are the exact option strings shown to the user.
     """
     gender: str = Field(..., examples=["Male", "Female", "Other / LGBTQ+"])
     age_group: str = Field(..., examples=["18–25 years", "26–35 years", "36–45 years", "46 and above"])
@@ -61,11 +59,11 @@ class ChatResponse(BaseModel):
 
 class ExplainRequest(BaseModel):
     scheme_id: str
-    term: Optional[str] = None  # omit to get a plain-language summary of the whole scheme
+    term: Optional[str] = None
 
 
 class ExplainResponse(BaseModel):
     scheme_id: str
     term: Optional[str] = None
-    explanation: str
     source: str  # "ai" or "fallback"
+    explanation: str

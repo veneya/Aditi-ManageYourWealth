@@ -1,6 +1,6 @@
 # test_match_maker.py
 
-from data.schemes import SCHEMES
+from backend.data.schemes import SCHEMES
 from utils.scheme_matcher import match_schemes
 
 # Test profiles

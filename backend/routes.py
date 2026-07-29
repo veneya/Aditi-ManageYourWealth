@@ -1,9 +1,13 @@
-# routes.py
+# backend/routes.py
 # All API endpoints for the ADITI Scheme Matchmaker.
 
 from fastapi import APIRouter, HTTPException
+import sys
+import os
 
-from data.schemes import SCHEMES, SCHEMES_SOURCES
+sys.path.append('..')
+
+from backend.data.schemes import SCHEMES, SCHEMES_SOURCES
 from models import (
     QuizAnswers,
     MatchResponse,
@@ -15,6 +19,14 @@ from models import (
 from matching import match_schemes
 from chatbot import bot_reply
 from explain import explain_scheme
+
+# Import RSS fetcher
+try:
+    from utils.rss_fetcher import fetch_rss_news
+except ImportError:
+    # Fallback RSS function if utils not available
+    def fetch_rss_news():
+        return []
 
 router = APIRouter(prefix="/api")
 
@@ -62,3 +74,13 @@ def explain(payload: ExplainRequest):
         "explanation": explanation,
         "source": source,
     }
+
+
+@router.get("/news")
+def get_news():
+    """Fetch latest financial news from PIB RSS."""
+    try:
+        news = fetch_rss_news()
+        return {"success": True, "news": news}
+    except Exception as e:
+        return {"success": False, "error": str(e), "news": []}

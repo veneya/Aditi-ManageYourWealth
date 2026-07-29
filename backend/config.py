@@ -1,4 +1,4 @@
-# config.py
+# backend/config.py
 # Loads environment variables (from .env locally, or real env vars in prod).
 
 import os

@@ -1,8 +1,8 @@
-# matching.py
+# backend/matching.py
 # Turns raw quiz answers into a normalized profile, then scores every
 # scheme in data/schemes.py against that profile's eligibility fields.
 
-from data.schemes import SCHEMES
+from backend.data.schemes import SCHEMES
 from models import QuizAnswers
 
 AGE_MIDPOINT = {
@@ -95,7 +95,8 @@ def label_for_rank(index: int) -> str:
     return "Least appropriate"
 
 
-def match_schemes(answers: QuizAnswers, limit: int = 3) -> list[dict]:
+def match_schemes(answers: QuizAnswers, limit: int = 5) -> list[dict]:
+    """Match schemes to user answers and return ranked list."""
     profile = normalize(answers)
     eligible = [s for s in SCHEMES if is_eligible(s, profile)]
 
