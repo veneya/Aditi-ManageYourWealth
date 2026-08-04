@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import routes
-from .routes import router
-from .data.schemes import SCHEMES
+from routes import router
+from data.schemes import SCHEMES
 
 app = FastAPI(
     title="ADITI Scheme Matchmaker API",

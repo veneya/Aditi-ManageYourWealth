@@ -3,7 +3,7 @@
 # back to the canned `jargon` list (or description) in schemes.py if Groq
 # is unavailable.
 
-from .groq_client import chat_completion
+from groq_client import chat_completion
 
 EXPLAIN_SYSTEM_PROMPT = (
     "You are ADITI, an assistant that explains Indian government welfare "

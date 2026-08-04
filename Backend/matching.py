@@ -2,8 +2,8 @@
 # Turns raw quiz answers into a normalized profile, then scores every
 # scheme in data/schemes.py against that profile's eligibility fields.
 
-from .data.schemes import SCHEMES
-from .models import QuizAnswers
+from data.schemes import SCHEMES
+from models import QuizAnswers
 
 AGE_MIDPOINT = {
     "18–25 years": 22,

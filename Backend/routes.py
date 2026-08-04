@@ -3,8 +3,8 @@
 
 from fastapi import APIRouter, HTTPException, status
 
-from .data.schemes import SCHEMES, SCHEMES_SOURCES
-from .models import (
+from data.schemes import SCHEMES, SCHEMES_SOURCES
+from models import (
     QuizAnswers,
     MatchResponse,
     ChatRequest,
@@ -13,10 +13,10 @@ from .models import (
     ExplainResponse,
     SubscriptionRequest,
 )
-from .matching import match_schemes
-from .chatbot import bot_reply
-from .explain import explain_scheme
-from .services.database import (
+from matching import match_schemes
+from chatbot import bot_reply
+from explain import explain_scheme
+from services.database import (
     SupabaseConfigurationError,
     SupabaseRequestError,
     subscribe_email,

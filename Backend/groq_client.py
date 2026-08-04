@@ -5,7 +5,7 @@
 
 import os
 from groq import Groq
-from .config import GROQ_API_KEY, GROQ_MODEL
+from config import GROQ_API_KEY, GROQ_MODEL
 
 _client: Groq | None = None
 

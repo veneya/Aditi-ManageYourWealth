@@ -7,8 +7,8 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 
-from .config import GROQ_API_KEY, GROQ_MODEL
-from .data.schemes import SCHEMES
+from config import GROQ_API_KEY, GROQ_MODEL
+from data.schemes import SCHEMES
 
 logger = logging.getLogger(__name__)
 
