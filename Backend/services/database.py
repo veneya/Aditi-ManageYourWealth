@@ -86,7 +86,7 @@ def get_active_recipients():
     """Fetches subscriber emails from Supabase 'subscribers' table."""
     try:
         if not SUPABASE_URL or not SUPABASE_ANON_KEY:
-            print("⚠️ Supabase credentials not configured. Please check .env file.")
+            print("Supabase credentials not configured. Please check .env file.")
             return []
             
         headers = _supabase_headers()
@@ -97,15 +97,15 @@ def get_active_recipients():
         if response.status_code == 200:
             rows = response.json()
             emails = [row["email"] for row in rows if row.get("email")]
-            print(f"✅ Retrieved {len(emails)} subscriber(s) from Supabase.")
+            print(f"Retrieved {len(emails)} subscriber(s) from Supabase.")
             return emails
         else:
-            print(f"❌ Failed to fetch subscribers. Status: {response.status_code}")
+            print(f"Failed to fetch subscribers. Status: {response.status_code}")
             print(f"   Response: {response.text}")
             return []
 
     except Exception as e:
-        print(f"❌ Error fetching users from Supabase: {e}")
+        print(f"Error fetching users from Supabase: {e}")
         return []
 
 def filter_new_articles(articles):
@@ -132,7 +132,7 @@ def mark_as_sent(article_hash, title):
             (article_hash, title)
         )
         conn.commit()
-        print(f"✅ Marked as sent: {title}")
+        print(f"Marked as sent: {title}")
     except sqlite3.IntegrityError:
         pass  # Already exists
     conn.close()

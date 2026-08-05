@@ -43,9 +43,9 @@ def fetch_and_parse_feeds():
                         'hash': generate_hash(title, link)
                     })
             else:
-                print(f"⚠️ Warning: Failed to parse feed for {source_name}")
+                print(f"Warning: Failed to parse feed for {source_name}")
 
         except Exception as e:
-            print(f"❌ Error fetching {source_name}: {e}")
+            print(f"Error fetching {source_name}: {e}")
 
     return all_articles

@@ -1,19 +1,9 @@
 # backend/services/email_service.py
 
-import sys
-import os
-from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# Add parent directory to path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from services.transport import fetch_and_parse_feeds
-from services.deadline import check_upcoming_deadlines
-from services.database import filter_new_articles, mark_as_sent, get_active_recipients
-from services.mailer import send_email_digest
+from .transport import fetch_and_parse_feeds
+from .deadline import check_upcoming_deadlines
+from .database import filter_new_articles, mark_as_sent, get_active_recipients
+from .mailer import send_email_digest
 
 def fetch_news_for_email():
     """
@@ -39,7 +29,7 @@ def fetch_news_for_email():
             recipients = get_active_recipients()
 
             if not recipients:
-                print("⚠️ No subscribers found.")
+                print("No subscribers found.")
                 return {"success": False, "count": 0, "message": "No subscribers"}
 
             print(f"5. Dispatching notification to {len(recipients)} subscriber(s)...")
@@ -57,5 +47,5 @@ def fetch_news_for_email():
             return {"success": True, "count": 0, "message": "No new items"}
 
     except Exception as e:
-        print(f"❌ Error in email service: {e}")
+        print(f"Error in email service: {e}")
         return {"success": False, "count": 0, "message": str(e)}

@@ -14,9 +14,9 @@ const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 const tabs = [
   { id: 'dashboard', label: 'Overview', mark: '01' },
   { id: 'match', label: 'Find schemes', mark: '02' },
-  { id: 'quiz', label: 'Learn', mark: '03' },
   { id: 'calculators', label: 'Calculators', mark: '04' },
   { id: 'catalogue', label: 'Explore schemes', mark: '05' },
+  { id: 'quiz', label: 'Quiz', mark: '03' },
   { id: 'assistant', label: 'Ask ADITI', mark: '06' },
 ];
 

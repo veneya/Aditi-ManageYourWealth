@@ -34,6 +34,20 @@ app.add_middleware(
 app.include_router(router)
 
 
+@app.on_event("startup")
+def start_weekly_email_digest():
+    from services.scheduler import start_email_scheduler
+
+    start_email_scheduler()
+
+
+@app.on_event("shutdown")
+def stop_weekly_email_digest():
+    from services.scheduler import stop_email_scheduler
+
+    stop_email_scheduler()
+
+
 @app.get("/")
 def root():
     return {
