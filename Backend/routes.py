@@ -86,7 +86,7 @@ def subscribe(payload: SubscriptionRequest):
 def get_news():
     """Fetch the latest items from the configured financial RSS feeds."""
     try:
-        from .services.transport import fetch_and_parse_feeds
+        from services.transport import fetch_and_parse_feeds
 
         news = fetch_and_parse_feeds()
         return {"success": True, "news": news}
