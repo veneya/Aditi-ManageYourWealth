@@ -57,6 +57,7 @@ def root():
         "endpoints": {
             "/api/match": "POST - Match user to schemes",
             "/api/chat": "POST - Ask ADITI chatbot",
+            "/api/wealth-agent/stream": "POST - Stream wealth planning guidance",
             "/api/explain": "POST - Explain scheme jargon",
             "/api/subscribe": "POST - Subscribe to updates",
             "/api/schemes": "GET - List all schemes",

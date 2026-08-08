@@ -89,6 +89,7 @@ def fetch_and_parse_feeds():
                     title = entry.get('title', 'No Title')
                     link = entry.get('link', '#')
                     summary = entry.get('summary', entry.get('description', 'No summary available.'))[:200]
+                    published = entry.get('published', entry.get('updated', ''))
                     digest = generate_hash(title, link)
                     if digest in seen:
                         continue
@@ -98,6 +99,7 @@ def fetch_and_parse_feeds():
                         'title': title,
                         'link': link,
                         'summary': summary,
+                        'published': published,
                         'hash': digest,
                     })
             else:

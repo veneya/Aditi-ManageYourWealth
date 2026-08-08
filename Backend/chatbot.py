@@ -44,11 +44,12 @@ PROMPT = ChatPromptTemplate.from_messages(
 )
 
 
-def ai_reply(message: str) -> str:
+def ai_reply(message: str, history: list[dict] | None = None) -> str:
     if not GROQ_API_KEY:
         raise RuntimeError("GROQ_API_KEY is not configured")
     agent = PROMPT | ChatGroq(groq_api_key=GROQ_API_KEY, model=GROQ_MODEL, temperature=0.3, max_tokens=300) | StrOutputParser()
-    return agent.invoke({"catalogue": CATALOGUE, "message": message})
+    prior = json.dumps((history or [])[-10:], ensure_ascii=False)
+    return agent.invoke({"catalogue": CATALOGUE, "message": f"Previous conversation: {prior}\nCurrent question: {message}"})
 
 
 def fallback_reply(message: str) -> str:
@@ -60,9 +61,9 @@ def fallback_reply(message: str) -> str:
     return f"I can help with these schemes: {names}. Ask about eligibility, benefits, or how to apply."
 
 
-def bot_reply(message: str) -> tuple[str, str]:
+def bot_reply(message: str, history: list[dict] | None = None) -> tuple[str, str]:
     try:
-        return ai_reply(message), "ai"
+        return ai_reply(message, history), "ai"
     except Exception:
         logger.exception("Groq agent failed; returning the catalogue fallback")
         return fallback_reply(message), "rule_based"

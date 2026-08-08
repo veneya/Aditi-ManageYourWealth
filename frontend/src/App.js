@@ -10,6 +10,7 @@ import Catalogue from './components/Catalogue';
 import Assistant from './components/Assistant';
 import AboutSection from './components/AboutSection';
 import LatestNews from './components/LatestNews';
+import WealthWorkspace from './components/WealthWorkspace';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 const tabs = [
@@ -19,6 +20,7 @@ const tabs = [
   { id: 'catalogue', label: 'Explore schemes', mark: '05' },
   { id: 'quiz', label: 'Quiz', mark: '03' },
   { id: 'assistant', label: 'Ask ADITI', mark: '06' },
+  { id: 'wealth', label: 'Wealth workspace', mark: '07' },
 ];
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
       {activeTab === 'calculators' && <section className="tool-page"><p className="eyebrow">Decision tools</p><Calculators /></section>}
       {activeTab === 'catalogue' && <section className="tool-page"><p className="eyebrow">Scheme catalogue</p><h1>Explore what is available.</h1><Catalogue /></section>}
       {activeTab === 'assistant' && <section className="tool-page"><p className="eyebrow">ADITI assistant</p><h1>A clear answer, when you need one.</h1><Assistant /></section>}
+      {activeTab === 'wealth' && <section className="tool-page wealth-page"><WealthWorkspace /></section>}
     </main><footer><span>ADITI / Information, made actionable.</span><span>Eligibility and calculator results are guidance, not advice.</span></footer></div>
     <Toaster position="top-right" toastOptions={{ style: { background: '#14213d', color: '#eff8ff', border: '1px solid #294263' } }} />
   </div>;

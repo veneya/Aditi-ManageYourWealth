@@ -1,7 +1,10 @@
 # backend/routes.py
 # All API endpoints for the ADITI Scheme Matchmaker.
 
+import asyncio
+import json
 from fastapi import APIRouter, HTTPException, status
+from fastapi.responses import StreamingResponse
 
 from data.schemes import SCHEMES, SCHEMES_SOURCES
 from models import (
@@ -12,9 +15,11 @@ from models import (
     ExplainRequest,
     ExplainResponse,
     SubscriptionRequest,
+    WealthAgentRequest,
 )
 from matching import match_schemes
 from chatbot import bot_reply
+from wealth_agent import plan
 from explain import explain_scheme
 from services.database import (
     SupabaseConfigurationError,
@@ -51,8 +56,19 @@ def chat(payload: ChatRequest):
     """Ask ADITI — Groq-powered reply, falls back to rule-based logic if Groq fails."""
     if not payload.message.strip():
         raise HTTPException(status_code=400, detail="message cannot be empty")
-    reply, source = bot_reply(payload.message)
+    reply, source = bot_reply(payload.message, payload.history)
     return {"reply": reply, "source": source}
+
+
+@router.post("/wealth-agent/stream")
+async def wealth_agent_stream(payload: WealthAgentRequest):
+    async def events():
+        for label in ("Reviewing your tracked allocations", "Searching official sources when current rates are needed", "Checking tax and scheme considerations", "Preparing a cautious recommendation"):
+            yield f"event: stage\ndata: {json.dumps({'label': label})}\n\n"
+            await asyncio.sleep(0.25)
+        result = await asyncio.to_thread(plan, payload.message, payload.portfolio, payload.history)
+        yield f"event: result\ndata: {json.dumps(result)}\n\n"
+    return StreamingResponse(events(), media_type="text/event-stream", headers={"Cache-Control": "no-cache"})
 
 
 @router.post("/explain", response_model=ExplainResponse)

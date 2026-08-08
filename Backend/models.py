@@ -50,11 +50,18 @@ class MatchResponse(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
+    history: List[dict] = Field(default_factory=list, max_length=10)
 
 
 class ChatResponse(BaseModel):
     reply: str
     source: str  # "ai" or "rule_based"
+
+
+class WealthAgentRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=2000)
+    portfolio: List[dict] = Field(default_factory=list)
+    history: List[dict] = Field(default_factory=list, max_length=12)
 
 
 class ExplainRequest(BaseModel):
