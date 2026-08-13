@@ -1,7 +1,7 @@
 # ADITI  
 **Aspire · Discover · Independence · Transform · Insights**
 
-## 📌 What is ADITI?
+##  What is ADITI?
 
 **ADITI** is a financial empowerment platform for women in India. It helps users discover government schemes they qualify for, calculate financial benefits, track investments, and build financial literacy — all in plain English.
 
@@ -12,7 +12,7 @@ The platform addresses two critical moments in a woman’s financial journey:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 | Feature | Description |
 |---|---|
