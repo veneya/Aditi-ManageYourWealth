@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 function SchemeCard({ scheme, compact = false }) {
   const [expanded, setExpanded] = useState(false);
@@ -37,7 +36,7 @@ function SchemeCard({ scheme, compact = false }) {
     }
     setLoading(true);
     try {
-      const response = await axios.post(`${API_BASE}/api/explain`, {
+      const response = await axios.post('/api/explain', {
         scheme_id: scheme.id,
       });
       setArticle(response.data.explanation);

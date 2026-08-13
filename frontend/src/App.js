@@ -12,7 +12,6 @@ import AboutSection from './components/AboutSection';
 import LatestNews from './components/LatestNews';
 import WealthWorkspace from './components/WealthWorkspace';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 const tabs = [
   { id: 'dashboard', label: 'Overview', mark: '01' },
   { id: 'match', label: 'Find schemes', mark: '02' },
@@ -34,13 +33,13 @@ function App() {
   const newsRef = useRef(null);
 
   useEffect(() => {
-    axios.get(`${API_BASE}/api/schemes`).then(({ data }) => setSchemesCount(data.schemes?.length || 0)).catch(() => setSchemesCount(0));
+    axios.get('/api/schemes').then(({ data }) => setSchemesCount(data.schemes?.length || 0)).catch(() => setSchemesCount(0));
   }, []);
 
   const handleMatch = async (profile) => {
     setLoading(true); setError(''); setHasSearched(true);
     try {
-      const { data } = await axios.post(`${API_BASE}/api/match`, profile);
+      const { data } = await axios.post('/api/match', profile);
       setMatchedSchemes(data.matches || []);
       toast.success(data.count ? `${data.count} schemes matched your profile.` : 'No schemes matched yet. Try adjusting your answers.');
     } catch {

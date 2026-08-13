@@ -4,7 +4,6 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
@@ -25,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/auth/me`);
+      const response = await axios.get('/api/auth/me');
       setUser(response.data);
     } catch (err) {
       localStorage.removeItem('token');
@@ -42,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       formData.append('username', email);
       formData.append('password', password);
       
-      const response = await axios.post(`${API_BASE}/api/auth/login`, formData, {
+      const response = await axios.post('/api/auth/login', formData, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
       
@@ -60,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password, name) => {
     try {
-      await axios.post(`${API_BASE}/api/auth/register`, { email, password, name });
+      await axios.post('/api/auth/register', { email, password, name });
       toast.success('Account created! Please login.');
       return { success: true };
     } catch (err) {

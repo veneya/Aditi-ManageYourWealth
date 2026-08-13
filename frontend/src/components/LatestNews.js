@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 const SOURCE_STYLE = {
   PIB: { label: 'PIB', className: 'source-pib' },
   RBI: { label: 'RBI', className: 'source-rbi' },
@@ -26,7 +25,7 @@ export default function LatestNews() {
   useEffect(() => {
     let mounted = true;
     axios
-      .get(`${API_BASE}/api/news`, { timeout: 12000 })
+      .get('/api/news', { timeout: 12000 })
       .then(({ data }) => {
         if (!mounted) return;
         setItems(data.news || []);

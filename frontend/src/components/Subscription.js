@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 function Subscription() {
   const [email, setEmail] = useState('');
@@ -18,7 +17,7 @@ function Subscription() {
     }
     setLoading(true);
     try {
-      const response = await axios.post(`${API_BASE}/api/subscribe`, { email });
+      const response = await axios.post('/api/subscribe', { email });
       if (response.data.success) {
         toast.success('Subscribed! You\'ll receive updates.');
         setEmail('');

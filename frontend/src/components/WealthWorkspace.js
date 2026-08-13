@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { signInWithGoogle } from '../firebase';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 function Auth({ onSignedIn }) {
   const [error, setError] = useState(''), [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ export default function WealthWorkspace() {
     event.preventDefault(); const message = input.trim(); if (!message || busy) return;
     setMessages((items) => [...items, { role: 'user', text: message }]); setInput(''); setBusy(true); setStages([]);
     try {
-      const response = await fetch(`${API_BASE}/api/wealth-agent/stream`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, portfolio, history: messages.slice(-10).map(({ role, text }) => ({ role, text })) }) });
+      const response = await fetch('/api/wealth-agent/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, portfolio, history: messages.slice(-10).map(({ role, text }) => ({ role, text })) }) });
       if (!response.ok || !response.body) throw new Error();
       const reader = response.body.getReader(), decoder = new TextDecoder(); let buffer = '';
       while (true) {
