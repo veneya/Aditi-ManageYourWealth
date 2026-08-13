@@ -29,7 +29,7 @@ The platform addresses two critical moments in a woman’s financial journey:
 
 ##  Live Demo
 
-- **Frontend:** https://aditi-manage-your-wealth.vercel.app/
+- **Link to the project:** https://aditi-manage-your-wealth.vercel.app/
 
 ---
 
