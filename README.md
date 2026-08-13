@@ -16,24 +16,24 @@ The platform addresses two critical moments in a woman’s financial journey:
 
 | Feature | Description |
 |---|---|
-| 🔐 **Firebase Authentication** | Email/Password + Google Sign-In for secure access |
-| 🎯 **Match Maker** | 11-question quiz that matches users to 13+ government schemes |
-| 💼 **Wealth Manager** | Track investments and calculate expected returns/profits |
-| 🧮 **4 Calculators** | Tax Comparator, Stamp Duty Savings, PMAY Subsidy, FD Returns |
-| 🧠 **Financial Literacy Quiz** | 8 questions with explanations for right/wrong answers |
-| 💬 **AI Chatbot (Ask ADITI)** | Ask financial questions in plain English |
-| 📰 **Live News Feed** | Auto-scrolling updates from PIB, RBI, and Finshots |
-| 📬 **Email Subscription** | Weekly scheme updates and deadline reminders |
+| **Firebase Authentication** | Email/Password + Google Sign-In for secure access |
+| **Match Maker** | 11-question quiz that matches users to 13+ government schemes |
+| **Wealth Manager** | Track investments and calculate expected returns/profits |
+| **4 Calculators** | Tax Comparator, Stamp Duty Savings, PMAY Subsidy, FD Returns |
+| **Financial Literacy Quiz** | 8 questions with explanations for right/wrong answers |
+| **AI Chatbot (Ask ADITI)** | Ask financial questions in plain English |
+| **Live News Feed** | Auto-scrolling updates from PIB, RBI, and Finshots |
+| **Email Subscription** | Weekly scheme updates and deadline reminders |
 
 ---
 
-## 🔗 Live Demo
+##  Live Demo
 
 - **Frontend:** https://aditi-manage-your-wealth.vercel.app/
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -48,7 +48,7 @@ The platform addresses two critical moments in a woman’s financial journey:
 
 ---
 
-## 📂 Repository Language Composition
+##  Repository Language Composition
 
 - **Python:** 49.9%  
 - **JavaScript:** 42.2%  
@@ -56,7 +56,7 @@ The platform addresses two critical moments in a woman’s financial journey:
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -69,7 +69,7 @@ The platform addresses two critical moments in a woman’s financial journey:
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\activate  # For Windows
 pip install -r requirements.txt
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
@@ -78,25 +78,22 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ```bash
 cd frontend
-pnpm install  # or npm install
-pnpm start    # or npm start
+pnpm install
+pnpm build 
+pnpm start    
 ```
 
 ---
 
-## 🌟 Vision
+##  Vision
 
 ADITI aims to bridge the financial knowledge gap by making government benefits, investment planning, and money management simple, accessible, and actionable for every woman.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions, ideas, and feature suggestions are welcome!  
 Please open an issue or submit a pull request.
 
 ---
-
-## 📄 License
-
-Add your preferred license here (for example, MIT License).
